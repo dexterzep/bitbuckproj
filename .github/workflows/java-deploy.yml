@@ -18,4 +18,5 @@ jobs:
 
       - name: Run a multi-line script
         run: |
-          sh /home/sbhardwa/test.sh 
+          sh /home/sbhardwa/test.sh
+          sh /home/sbhardwa/test1.sh
