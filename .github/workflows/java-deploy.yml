@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  tomcat:
     runs-on: [self-hosted]
 
     steps:
@@ -19,4 +19,15 @@ jobs:
       - name: Run a multi-line script
         run: |
           sh /home/sbhardwa/test.sh
-          sh /home/sbhardwa/test1.sh
+  wildfly:
+    runs-on: [self-hosted]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        run: |
+          sh /home/sbhardwa/test1.sh       
