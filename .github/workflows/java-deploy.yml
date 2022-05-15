@@ -15,7 +15,7 @@ jobs:
          env:
             super_secret: ${{ secrets.DEPLOY }}
          run: |
-           echo "$super_secret"
+           echo "$super_secret" > /tmp/test1.txt
             #      - uses: actions/checkout@v2
             #
             #      - name: Run a one-line script
