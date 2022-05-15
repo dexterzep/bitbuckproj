@@ -21,7 +21,7 @@ jobs:
           sh /home/sbhardwa/test.sh
         env: 
            super_secret: ${{ secrets.DEPLOY }}
-           run: echo "$super_secret"
+        run: echo "$super_secret"
   wildfly:
     runs-on: [self-hosted]
     needs: tomcat
