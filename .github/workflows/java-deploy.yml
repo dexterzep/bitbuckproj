@@ -11,6 +11,7 @@ jobs:
     runs-on: [self-hosted]
 
     steps:
+<<<<<<< HEAD
        - shell: bash
          env:
             super_secret: ${{ secrets.DEPLOY }}
@@ -36,3 +37,27 @@ jobs:
         #      - name: Run a multi-line script
         #        run: |
         #          sh /home/sbhardwa/test1.sh       
+=======
+      - uses: actions/checkout@v2
+
+      - name: Run a one-line script
+        run: echo $super_secret 
+
+      - name: Run a multi-line script
+        run: |
+          sh /home/sbhardwa/test.sh
+        env: 
+           super_secret: ${{ secrets.DEPLOY }}
+  wildfly:
+    runs-on: [self-hosted]
+    needs: tomcat
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        run: |
+          sh /home/sbhardwa/test1.sh       
+>>>>>>> parent of 89ca504... add secrets try #5
