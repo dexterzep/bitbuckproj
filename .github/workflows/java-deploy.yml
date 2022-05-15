@@ -1,8 +1,8 @@
-name: CICD
+name: Java code deployment
 
 on:
   push:
-    branches: [ DEV ]
+    branches: [ PROD ]
 
   workflow_dispatch:
 
