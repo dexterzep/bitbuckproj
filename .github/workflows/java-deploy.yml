@@ -11,25 +11,28 @@ jobs:
     runs-on: [self-hosted]
 
     steps:
-      - uses: actions/checkout@v2
+       - shell: bash
+         env:
+            super_secret: ${{ secrets.DEPLOY }}
+         run: |
+           echo "$super_secret"
+            #      - uses: actions/checkout@v2
+            #
+            #      - name: Run a one-line script
+            #        run: echo $super_secret > /tmp/test1
 
-      - name: Run a one-line script
-        run: echo $super_secret > /tmp/test1
-
-      - name: Run a multi-line script
-        run: |
-          sh /home/sbhardwa/test.sh
-        env: 
-           super_secret: ${{ secrets.DEPLOY }}
-  wildfly:
-    runs-on: [self-hosted]
-    needs: tomcat
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      - name: Run a multi-line script
-        run: |
-          sh /home/sbhardwa/test1.sh       
+        #      - name: Run a multi-line script
+        #        run: |
+        #          sh /home/sbhardwa/test.sh
+        #  wildfly:
+        #    runs-on: [self-hosted]
+        #    needs: tomcat
+        #    steps:
+        #      - uses: actions/checkout@v2
+        #
+        #      - name: Run a one-line script
+        #        run: echo Hello, world!
+        #
+        #      - name: Run a multi-line script
+        #        run: |
+        #          sh /home/sbhardwa/test1.sh       
