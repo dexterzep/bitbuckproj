@@ -14,14 +14,13 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: echo "$super_secret" 
 
       - name: Run a multi-line script
         run: |
           sh /home/sbhardwa/test.sh
         env: 
            super_secret: ${{ secrets.DEPLOY }}
-        run: echo "$super_secret"
   wildfly:
     runs-on: [self-hosted]
     needs: tomcat
