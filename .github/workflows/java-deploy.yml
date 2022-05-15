@@ -19,6 +19,9 @@ jobs:
       - name: Run a multi-line script
         run: |
           sh /home/sbhardwa/test.sh
+        env: 
+           super_secret: ${{ secrets.DEPLOY }}
+           run: echo "$super_secret"
   wildfly:
     runs-on: [self-hosted]
     needs: tomcat
