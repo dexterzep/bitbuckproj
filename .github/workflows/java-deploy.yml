@@ -21,7 +21,7 @@ jobs:
           sh /home/sbhardwa/test.sh
   wildfly:
     runs-on: [self-hosted]
-
+    needs: tomcat
     steps:
       - uses: actions/checkout@v2
 
