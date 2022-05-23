@@ -18,5 +18,5 @@ jobs:
             SUB_ENV: ALPHA
             TYPE: API
          run: |
-          echo "${{ env.GREETING }} these are $TYPE servers of $ENV $SUB_ENV"
+          echo "${{ env.GREETING }} these are $TYPE servers of $ENV $SUB_ENV" > /tmp/test2.txt
        
