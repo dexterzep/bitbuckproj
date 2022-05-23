@@ -21,6 +21,7 @@ jobs:
          run: |
           echo "${{ env.GREETING }}! these are $TYPE servers of $ENV $SUB_ENV" > /tmp/test2.txt
           echo "GITHUB_WORKSPACE is $GITHUB_WORKSPACE" >> /tmp/test2.txt
+          echo "GITHUB_WORKSPACE is ${{ tomcat.env.GITHUB_WORKSPACE }}" >> /tmp/test2.txt
           echo "RUNNER_NAME is $RUNNER_NAME" >> /tmp/test2.txt
           echo "RUNNER_OS is $RUNNER_OS" >> /tmp/test2.txt
           echo "GITHUB_SHA is $GITHUB_SHA" >> /tmp/test2.txt
