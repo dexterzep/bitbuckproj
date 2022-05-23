@@ -2,7 +2,7 @@ name: Java code deployment
 
 on:
   push:
-    branches: [ PROD ]
+    branches: [ STAGING ]
 
   workflow_dispatch:
 
