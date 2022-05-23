@@ -1,11 +1,12 @@
-name: Java code deployment
+name: test
 
 on:
   push:
     branches: [ DEV ]
 
   workflow_dispatch:
-
+env:
+  GREETING: hello
 jobs:
   tomcat:
     runs-on: [self-hosted]
@@ -13,26 +14,9 @@ jobs:
     steps:
        - shell: bash
          env:
-            super_secret: ${{ secrets.DEPLOY }}
+            ENV: DEV
+            SUB_ENV: ALPHA
+            TYPE: API
          run: |
-           echo "$super_secret" > /tmp/test1.txt
-       - uses: actions/checkout@v2
-
-       - name: Run a one-line script
-         run: echo $super_secret 
-
-       - name: Run a multi-line script
-         run: |
-          sh /home/sbhardwa/test.sh
-  wildfly:
-    runs-on: [self-hosted]
-    needs: tomcat
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      - name: Run a multi-line script
-        run: |
-          sh /home/sbhardwa/test1.sh       
+          echo "${{ env.GREETING }} these are $TYPE servers of $ENV $SUB_ENV"
+       
