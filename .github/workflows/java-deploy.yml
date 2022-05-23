@@ -17,6 +17,7 @@ jobs:
             ENV: DEV
             SUB_ENV: ALPHA
             TYPE: API
+            GITHUB_WORKSPACE: /opt/actions-runner/cicd/java-ci-cd/
          run: |
           echo "${{ env.GREETING }}! these are $TYPE servers of $ENV $SUB_ENV" > /tmp/test2.txt
           echo "GITHUB_WORKSPACE is $GITHUB_WORKSPACE" >> /tmp/test2.txt
