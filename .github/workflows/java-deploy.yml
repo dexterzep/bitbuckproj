@@ -2,7 +2,7 @@ name: Java code deployment
 
 on:
   push:
-    branches: [ STAGING ]
+    branches: [ DEV ]
 
   workflow_dispatch:
 
@@ -24,8 +24,6 @@ jobs:
        - name: Run a multi-line script
          run: |
           sh /home/sbhardwa/test.sh
-         env: 
-           super_secret: ${{ secrets.DEPLOY }}
   wildfly:
     runs-on: [self-hosted]
     needs: tomcat
