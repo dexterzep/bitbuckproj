@@ -6,7 +6,7 @@ on:
 
   workflow_dispatch:
 env:
-  GREETING: hello
+  GREETING: HELLO
 jobs:
   tomcat:
     runs-on: [self-hosted]
@@ -18,5 +18,11 @@ jobs:
             SUB_ENV: ALPHA
             TYPE: API
          run: |
-          echo "${{ env.GREETING }} these are $TYPE servers of $ENV $SUB_ENV" > /tmp/test2.txt
+          echo "${{ env.GREETING }}! these are $TYPE servers of $ENV $SUB_ENV" > /tmp/test2.txt
+          echo "GITHUB_WORKSPACE is ${{ GITHUB_WORKSPACE }}" >> /tmp/test2.txt
+          echo "RUNNER_NAME is ${{ RUNNER_NAME }}" >> /tmp/test2.txt
+          echo "RUNNER_OS is ${{ RUNNER_OS }}" >> /tmp/test2.txt
+          echo "GITHUB_SHA is ${{ GITHUB_SHA }}" >> /tmp/test2.txt
+          echo "GITHUB_RUN_ID is ${{ GITHUB_RUN_ID }}" >> /tmp/test2.txt
+          echo "GITHUB_ENV is ${{ GITHUB_ENV }}" >> /tmp/test2.txt
        
