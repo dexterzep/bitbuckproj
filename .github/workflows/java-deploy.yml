@@ -22,7 +22,8 @@ jobs:
     needs: build
     steps:
       - name: Hello world action
-        env: JBOSS_HOME: ${{ secrets.DEPLOY }}
+        env:
+           JBOSS_HOME: ${{ secrets.DEPLOY }}
       - name: Run a multi-line script
         run: |
           sh /home/github/deployscripts/wilddeploy.sh
