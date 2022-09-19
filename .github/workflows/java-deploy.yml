@@ -1,31 +1,32 @@
-name: test
+name: Java code deployment
 
 on:
   push:
     branches: [ DEV ]
 
   workflow_dispatch:
-env:
-  GREETING: HELLO
+
 jobs:
   tomcat:
     runs-on: [self-hosted]
-
     steps:
        - shell: bash
          env:
-            ENV: DEV
-            SUB_ENV: ALPHA
-            TYPE: API
-            GITHUB_WORKSPACE: /opt/actions-runner/cicd/java-ci-cd/
+            super_secret: ${{ secrets.DEPLOY }}
          run: |
-          echo "${{ env.GREETING }}! these are $TYPE servers of $ENV $SUB_ENV" > /tmp/test2.txt
-          echo "GITHUB_WORKSPACE is $GITHUB_WORKSPACE" >> /tmp/test2.txt
-          echo "GITHUB_WORKSPACE is ${{ env.GITHUB_WORKSPACE }}" >> /tmp/test2.txt
-          echo "RUNNER_NAME is $RUNNER_NAME" >> /tmp/test2.txt
-          echo "RUNNER_OS is $RUNNER_OS" >> /tmp/test2.txt
-          echo "GITHUB_SHA is $GITHUB_SHA" >> /tmp/test2.txt
-          echo "GITHUB_RUN_ID is $GITHUB_RUN_ID" >> /tmp/test2.txt
-          echo "GITHUB_ENV is $GITHUB_ENV" >> /tmp/test2.txt
-          echo "$PWD" >> /tmp/test2.txt
-       
+           echo "$super_secret" > /tmp/test1.txt
+           #       - uses: actions/checkout@v2
+       - name: Run a one-line script
+         run: echo $super_secret 
+         #  wildfly:
+         #    runs-on: [self-hosted]
+         #    needs: tomcat
+         #    steps:
+         #      - uses: actions/checkout@v2
+         #
+         #      - name: Run a one-line script
+         #        run: echo Hello, world!
+         #
+         #      - name: Run a multi-line script
+         #        run: |
+         #          sh /home/sbhardwa/test1.sh
