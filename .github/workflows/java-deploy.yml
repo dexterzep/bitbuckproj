@@ -28,4 +28,6 @@ jobs:
           echo "GITHUB_RUN_ID is $GITHUB_RUN_ID" >> /tmp/test2.txt
           echo "GITHUB_ENV is $GITHUB_ENV" >> /tmp/test2.txt
           echo "$PWD" >> /tmp/test2.txt
-       
+
+          echo "GITHUB_ACTION_REPOSITORY is $GITHUB_ACTION_REPOSITORY" >> /tmp/test5.txt
+          echo "GITHUB_REPOSITORY is $GITHUB_REPOSITORY" >> /tmp/test5.txt
