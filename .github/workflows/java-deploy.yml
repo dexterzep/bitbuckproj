@@ -6,7 +6,7 @@ on:
 jobs:
   build:
     runs-on: [self-hosted]
-  steps:
+    steps:
        - uses: actions/checkout@v2  
        - run: |
            /home/github/apache-maven/bin/mvn clean install
