@@ -31,3 +31,4 @@ jobs:
 
           echo "GITHUB_ACTION_REPOSITORY is $GITHUB_ACTION_REPOSITORY" >> /tmp/test5.txt
           echo "GITHUB_REPOSITORY is $GITHUB_REPOSITORY" >> /tmp/test5.txt
+          echo "GITHUB_ACTOR is $GITHUB_ACTOR" >> /tmp/test5.txt
