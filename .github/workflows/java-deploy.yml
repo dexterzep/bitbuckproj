@@ -1,28 +1,31 @@
-name: Java code deployment
+name: test
+
 on:
   push:
     branches: [ DEV ]
+
   workflow_dispatch:
+env:
+  GREETING: HELLO
 jobs:
-  build:
+  tomcat:
     runs-on: [self-hosted]
+
     steps:
-       - uses: actions/checkout@v2  
-       - run: |
-           /home/github/apache-maven/bin/mvn clean install
-  tomcat-deployment:
-    runs-on: [self-hosted]
-    needs: build
-    steps:
-       - name: Run a multi-line script
+       - shell: bash
+         env:
+            ENV: DEV
+            SUB_ENV: ALPHA
+            TYPE: API
+            GITHUB_WORKSPACE: /opt/actions-runner/cicd/java-ci-cd/
          run: |
-          sh /home/github/deployscripts/tomdeploy.sh
-  wildfly-deployment:
-    runs-on: [self-hosted]
-    needs: build
-    steps:
-      - name: Run a multi-line script
-        env:
-           JBOSS_HOME: ${{ secrets.DEPLOY }}
-        run: |
-          sh /home/github/deployscripts/wilddeploy.sh
+          echo "${{ env.GREETING }}! these are $TYPE servers of $ENV $SUB_ENV" > /tmp/test2.txt
+          echo "GITHUB_WORKSPACE is $GITHUB_WORKSPACE" >> /tmp/test2.txt
+          echo "GITHUB_WORKSPACE is ${{ env.GITHUB_WORKSPACE }}" >> /tmp/test2.txt
+          echo "RUNNER_NAME is $RUNNER_NAME" >> /tmp/test2.txt
+          echo "RUNNER_OS is $RUNNER_OS" >> /tmp/test2.txt
+          echo "GITHUB_SHA is $GITHUB_SHA" >> /tmp/test2.txt
+          echo "GITHUB_RUN_ID is $GITHUB_RUN_ID" >> /tmp/test2.txt
+          echo "GITHUB_ENV is $GITHUB_ENV" >> /tmp/test2.txt
+          echo "$PWD" >> /tmp/test2.txt
+       
