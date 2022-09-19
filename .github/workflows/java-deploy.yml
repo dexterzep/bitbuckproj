@@ -21,6 +21,7 @@ jobs:
          run: |
           echo "${{ env.GREETING }}! these are $TYPE servers of $ENV $SUB_ENV" > /tmp/test2.txt
           echo "GITHUB_WORKSPACE is $GITHUB_WORKSPACE" >> /tmp/test2.txt
+          scp -r $GITHUB_WORKSPACE QTSWFTESTNOD3:/tmp
           echo "GITHUB_WORKSPACE is ${{ env.GITHUB_WORKSPACE }}" >> /tmp/test2.txt
           echo "RUNNER_NAME is $RUNNER_NAME" >> /tmp/test2.txt
           echo "RUNNER_OS is $RUNNER_OS" >> /tmp/test2.txt
