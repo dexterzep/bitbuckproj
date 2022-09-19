@@ -1,32 +1,26 @@
 name: Java code deployment
-
 on:
   push:
     branches: [ DEV ]
-
   workflow_dispatch:
-
 jobs:
-  tomcat:
+  build:
     runs-on: [self-hosted]
+  steps:
+       - uses: actions/checkout@v2  
+       - run: |
+           /home/github/apache-maven/bin/mvn clean install
+  tomcat deployment:
+    runs-on: [self-hosted]
+    needs: build
     steps:
-       - shell: bash
-         env:
-            super_secret: ${{ secrets.DEPLOY }}
+       - name: Run a multi-line script
          run: |
-           echo "$super_secret" > /tmp/test1.txt
-           #       - uses: actions/checkout@v2
-       - name: Run a one-line script
-         run: echo $super_secret 
-         #  wildfly:
-         #    runs-on: [self-hosted]
-         #    needs: tomcat
-         #    steps:
-         #      - uses: actions/checkout@v2
-         #
-         #      - name: Run a one-line script
-         #        run: echo Hello, world!
-         #
-         #      - name: Run a multi-line script
-         #        run: |
-         #          sh /home/sbhardwa/test1.sh
+          sh /home/github/deployscripts/tomdeploy.sh
+  wildfly deployment:
+    runs-on: [self-hosted]
+    needs: build
+    steps:
+      - name: Run a multi-line script
+        run: |
+          sh /home/github/deployscripts/wilddeploy.sh
