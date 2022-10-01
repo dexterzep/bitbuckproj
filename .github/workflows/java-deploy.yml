@@ -10,7 +10,7 @@ jobs:
       runs-on: self-hosted
       steps:
         - run: |
-             /usr/bin/ansible-playbook/ansible-playbook /opt/ansible-playbook/sample.yml -i /opt/ansible-playbook/inventory.txt
+             /usr/bin/ansible-playbook /opt/ansible-playbook/sample.yml -i /opt/ansible-playbook/inventory.txt
 
 
 
