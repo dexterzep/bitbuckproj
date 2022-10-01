@@ -7,7 +7,7 @@ env:
     deploy_server: PROD
 jobs:
    test:
-      runs-on: [self-hosted]
+      runs-on: self-hosted
       steps:
         - run: |
              /usr/bin/ansible-playbook/ansible-playbook /opt/ansible-playbook/sample.yml -i /opt/ansible-playbook/inventory.txt
