@@ -1,35 +1,17 @@
-name: test
-
+name: Java code deployment
 on:
   push:
     branches: [ DEV ]
-
   workflow_dispatch:
 env:
-  GREETING: HELLO
+   - deploy_server: PROD
 jobs:
-  tomcat:
-    runs-on: [self-hosted]
+   test:
+      runs-on: [self-hosted]
+      steps:
+        - run: |
+             /usr/bin/ansible-playbook/ansible-playbook /opt/ansible-playbook/sample.yml -i /opt/ansible-playbook/inventory.txt
 
-    steps:
-       - shell: bash
-         env:
-            ENV: DEV
-            SUB_ENV: ALPHA
-            TYPE: API
-            GITHUB_WORKSPACE: /opt/actions-runner/cicd/java-ci-cd/
-         run: |
-          echo "${{ env.GREETING }}! these are $TYPE servers of $ENV $SUB_ENV" > /tmp/test2.txt
-          echo "GITHUB_WORKSPACE is $GITHUB_WORKSPACE" >> /tmp/test2.txt
-          scp -r $GITHUB_WORKSPACE QTSWFTESTNOD3:/tmp
-          echo "GITHUB_WORKSPACE is ${{ env.GITHUB_WORKSPACE }}" >> /tmp/test2.txt
-          echo "RUNNER_NAME is $RUNNER_NAME" >> /tmp/test2.txt
-          echo "RUNNER_OS is $RUNNER_OS" >> /tmp/test2.txt
-          echo "GITHUB_SHA is $GITHUB_SHA" >> /tmp/test2.txt
-          echo "GITHUB_RUN_ID is $GITHUB_RUN_ID" >> /tmp/test2.txt
-          echo "GITHUB_ENV is $GITHUB_ENV" >> /tmp/test2.txt
-          echo "$PWD" >> /tmp/test2.txt
 
-          echo "GITHUB_ACTION_REPOSITORY is $GITHUB_ACTION_REPOSITORY" >> /tmp/test5.txt
-          echo "GITHUB_REPOSITORY is $GITHUB_REPOSITORY" >> /tmp/test5.txt
-          echo "GITHUB_ACTOR is $GITHUB_ACTOR" >> /tmp/test5.txt
+
+  
