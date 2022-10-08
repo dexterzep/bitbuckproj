@@ -1,17 +1,17 @@
 name: Java code deployment
 on:
   push:
-    branches: [ DEV ]
+    branches: 
   workflow_dispatch:
 env:
     deploy_server: PROD
+    war_filename: sample-project-0.0.1-SNAPSHOT.war
 jobs:
    test:
       runs-on: [self-hosted]
       steps:
-        - run: |
-             /usr/bin/ansible-playbook/ansible-playbook /opt/ansible-playbook/sample.yml -i /opt/ansible-playbook/inventory.txt
-
-
-
-  
+       - name: tst run
+         run: |
+             /usr/bin/ansible-playbook/ansible-playbook -e /opt/ansible-playbook/sample.yml -i /opt/ansible-playbook/inventory.txt
+         env:
+            variable: $deploy_server
