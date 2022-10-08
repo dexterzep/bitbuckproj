@@ -10,17 +10,8 @@ jobs:
    test:
       runs-on: self-hosted
       steps:
-<<<<<<< HEAD
        - name: tst run
          run: |
              /usr/bin/ansible-playbook/ansible-playbook -e /opt/ansible-playbook/sample.yml -i /opt/ansible-playbook/inventory.txt
          env:
             variable: $deploy_server
-=======
-        - run: |
-             ansible-playbook /opt/ansible-playbook/sample.yml -i /opt/ansible-playbook/inventory.txt --extra-vars "host=$deploy_server"
-
-
-
-  
->>>>>>> 5c99923e4fb4ddc39abb7aa6969a3bca4e45cdd1
