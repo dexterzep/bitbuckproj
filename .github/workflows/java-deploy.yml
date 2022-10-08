@@ -12,6 +12,6 @@ jobs:
       steps:
        - name: tst run
          run: |
-             ansible-playbook -i /opt/ansible-playbook/inventory.txt /opt/ansible-playbook/sample.yml
+             ansible-playbook -i /opt/ansible-playbook/inventory.txt /opt/ansible-playbook/sync.yaml
          env:
             variable: $deploy_server
