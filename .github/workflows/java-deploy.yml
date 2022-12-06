@@ -6,7 +6,7 @@ on:
 env:
     deploy_server: QA
     war_filename: sample-project-0.0.1-SNAPSHOT.war
-    git_sha: ${{ GITHUB_SHA }}
+    #   git_sha: ${{ GITHUB_SHA }}
 jobs:
    test:
       runs-on: self-hosted
