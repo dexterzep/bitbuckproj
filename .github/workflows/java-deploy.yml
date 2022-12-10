@@ -12,10 +12,5 @@ jobs:
    Clone_Build:
       runs-on: [self-hosted]
       steps:
-       - name: Checkout
-         uses: actions/checkout@v3
        - name: Build
-         run: mvn clean install
-       - name: Copy
-         run: mkdir -p /opt/chekouts/$GITHUB_REPOSITORY/$GITHUB_SHA/  
-       - run: cp -apr  target/sample-project-0.0.1-SNAPSHOT.war /opt/chekouts/$GITHUB_REPOSITORY/$GITHUB_SHA/
+         run: echo $github.event
