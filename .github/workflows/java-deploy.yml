@@ -7,14 +7,12 @@ on:
 env:
     deploy_server: QA
     war_filename: sample-project-0.0.1-SNAPSHOT.war
-    #   git_sha: ${{ GITHUB_SHA }}
+    git_sha: $GITHUB_SHA
+    repo_name: ${{ github.event.repository.name }}
 jobs:
    Clone_Build:
       runs-on: [self-hosted]
       steps:
        - name: Build
-         env:
-           GITHUB_CONTEXT: ${{ toJson(github.event) }}
-         run: |
-             echo "$GITHUB_CONTEXT"
-       - run: echo "${{ github.event.repository.name }}"
+         run: echo "$env.git_sha"
+       - run: echo "$env.repo_name"
