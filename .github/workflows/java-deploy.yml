@@ -17,4 +17,5 @@ jobs:
        - name: Build
          run: mvn clean install
        - name: Copy
-         run: mkdir /opt/chekouts/$GITHUB_REPOSITORY/$GITHUB_SHA/ | cp -apr *.war /opt/chekouts/$GITHUB_REPOSITORY/$GITHUB_SHA/
+         run: mkdir /opt/chekouts/$GITHUB_REPOSITORY/$GITHUB_SHA/  
+       - run: cp -apr  target/sample-project-0.0.1-SNAPSHOT.war /opt/chekouts/$GITHUB_REPOSITORY/$GITHUB_SHA/
