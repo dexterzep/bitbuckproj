@@ -1,18 +1,15 @@
 name: Java code deployment
 on:
   push:
-    branches: 
+    branches:
+            - DEV     
   workflow_dispatch:
 env:
     deploy_server: QA
     war_filename: sample-project-0.0.1-SNAPSHOT.war
     #   git_sha: ${{ GITHUB_SHA }}
 jobs:
-   test:
+   clone:
       runs-on: self-hosted
       steps:
-       - name: tst run
-         run: |
-             ansible-playbook -i /opt/ansible-playbook/inventory.txt /opt/ansible-playbook/wildfly-deploy.yaml
-         env:
-            variable: $deploy_server
+       - uses: actions/checkout@v3
