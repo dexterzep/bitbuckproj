@@ -10,6 +10,6 @@ env:
     #   git_sha: ${{ GITHUB_SHA }}
 jobs:
    clone:
-      runs-on: self-hosted
+      runs-on: [self-hosted]
       steps:
        - uses: actions/checkout@v3
