@@ -9,17 +9,17 @@ env:
     war_filename: sample-project-0.0.1-SNAPSHOT.war
     repo_name: ${{ github.event.repository.name }}
 jobs:
-   Clone:
-      runs-on: [self-hosted]
-      steps:
-       - name: Clone
-         uses: actions/checkout@v3
+        #   Clone:
+        #      runs-on: [self-hosted]
+        #      steps:
+        #       - name: Clone
+        #         uses: actions/checkout@v3
    Build_LocalCopy:
        runs-on: [self-hosted]
-       needs: Clone
+       #       needs: Clone
        steps:
        - run: mvn clean install
-       - run: sudo mkdir -p /opt/artifacts/${{ env.repo_name }}/$GITHUB_SHA
+       - run: mkdir -p /opt/artifacts/${{ env.repo_name }}/$GITHUB_SHA
        - run: ls -lht target/$war_filename 
-       - run: sudo cp -pr target/$war_filename /opt/artifacts/${{ env.repo_name }}/$GITHUB_SHA
+       - run: cp -pr target/$war_filename /opt/artifacts/${{ env.repo_name }}/$GITHUB_SHA
 
