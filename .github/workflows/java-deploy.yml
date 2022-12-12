@@ -20,5 +20,5 @@ jobs:
        needs: Clone
        steps:
        - name: Build
-         run: mvn clean install    
-         run: echo $PWD
+         run: mvn clean install    | 
+              echo $PWD
