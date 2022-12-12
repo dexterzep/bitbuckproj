@@ -7,7 +7,6 @@ on:
 env:
     deploy_server: QA
     war_filename: sample-project-0.0.1-SNAPSHOT.war
-    git_sha: $GITHUB_SHA
     repo_name: ${{ github.event.repository.name }}
 jobs:
    Clone:
@@ -20,5 +19,5 @@ jobs:
        needs: Clone
        steps:
        - run: mvn clean install
-       - run: sudo mkdir -p /opt/artifacts/$GITHUB_REPOSITORY/$GITHUB_SHA
-       - run: cp -pra target/$war_filename /opt/artifacts/$GITHUB_REPOSITORY/$GITHUB_SHA/
+       - run: sudo mkdir -p /opt/artifacts/${{ env.repo_name }}/$GITHUB_SHA
+       - run: cp -pr target/$war_filename /opt/artifacts/${{ env.repo_name }}/$GITHUB_SHA/
