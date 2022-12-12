@@ -19,4 +19,4 @@ jobs:
        runs-on: [self-hosted]
        steps:
        - name: Build
-         run: mvn clean install    
+         run: mvn -f $GITHUB_WORKSPACE/pom.xml clean install    
