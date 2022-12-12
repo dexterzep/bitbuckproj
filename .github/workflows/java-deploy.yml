@@ -20,4 +20,4 @@ jobs:
        needs: Clone
        steps:
        - name: Build
-         run: mvn -f $GITHUB_WORKSPACE/pom.xml clean install    
+         run: mvn clean install    
