@@ -15,10 +15,10 @@ jobs:
       steps:
        - name: Clone
          uses: actions/checkout@v3
-   Build:
+   Build_LocalCopy:
        runs-on: [self-hosted]
        needs: Clone
        steps:
-       - name: Build
-         run: mvn clean install    | 
-              echo $PWD
+       - run: mvn clean install
+       - run: mkdir -p /opt/deployments/$GITHUB_REPOSITORY/$GITHUB_SHA
+       - run: cp -pra target/$war_filename /opt/deployments/$GITHUB_REPOSITORY/$GITHUB_SHA/
