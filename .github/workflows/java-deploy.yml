@@ -21,3 +21,4 @@ jobs:
        steps:
        - name: Build
          run: mvn clean install    
+         run: echo $PWD
