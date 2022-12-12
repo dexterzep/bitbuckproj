@@ -14,7 +14,7 @@ jobs:
       runs-on: [self-hosted]
       steps:
        - name: Clone
-         run: actions/checkout@v3
+         uses: actions/checkout@v3
    Build:
        runs-on: [self-hosted]
        steps:
