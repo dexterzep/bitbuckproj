@@ -10,9 +10,13 @@ env:
     git_sha: $GITHUB_SHA
     repo_name: ${{ github.event.repository.name }}
 jobs:
-   Clone_Build:
+   Clone:
       runs-on: [self-hosted]
       steps:
+       - name: Clone
+         run: actions/checkout@v3
+   Build:
+       runs-on: [self-hosted]
+       steps:
        - name: Build
-         run: echo "${{ env.git_sha }}"
-       - run: echo "${{ env.repo_name }}"
+         run: mvn clean install    
