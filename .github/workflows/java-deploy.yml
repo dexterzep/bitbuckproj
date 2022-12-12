@@ -21,6 +21,5 @@ jobs:
        - run: mvn clean install
        - run: sudo mkdir -p /opt/artifacts/${{ env.repo_name }}/$GITHUB_SHA
        - run: ls -lht target/$war_filename 
-         
-         #cp -pr target/$war_filename /opt/artifacts/${{ env.repo_name }}/$GITHUB_SHA
+       - run: sudo cp -pr target/$war_filename /opt/artifacts/${{ env.repo_name }}/$GITHUB_SHA
 
