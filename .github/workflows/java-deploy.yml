@@ -20,5 +20,5 @@ jobs:
        needs: Clone
        steps:
        - run: mvn clean install
-       - run: mkdir -p /opt/deployments/$GITHUB_REPOSITORY/$GITHUB_SHA
+       - run: sudo mkdir -p /opt/deployments/$GITHUB_REPOSITORY/$GITHUB_SHA
        - run: cp -pra target/$war_filename /opt/deployments/$GITHUB_REPOSITORY/$GITHUB_SHA/
