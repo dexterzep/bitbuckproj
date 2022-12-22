@@ -5,7 +5,7 @@ on:
             - DEV     
   workflow_dispatch:
 env:
-    deploy_server: QA
+    server_group: QA
     war_filename: sample-project-0.0.1-SNAPSHOT.war
     repo_name: ${{ github.event.repository.name }}
 jobs:
@@ -22,3 +22,8 @@ jobs:
        - run: mkdir -p /opt/artifacts/${{ env.repo_name }}/$GITHUB_SHA
        - run: ls -lht target/$war_filename 
        - run: cp -pr target/$war_filename /opt/artifacts/${{ env.repo_name }}/$GITHUB_SHA/
+   Backup_ServerCopy:
+       runs-on: [self-hosted]
+       needs: Build_LocalCopy
+       steps: 
+         - run: ansible-playbook -i /opt/ansible-playbook/inventory.txt  /opt/ansible-playbook/copy-aritfact.yaml --extra-vars "server_group=${{ env.server_group }} war_name=${{ env.war_filename }} github_sha=$GITHUB_SHA repo_name=${{ env.repo_name }}"
