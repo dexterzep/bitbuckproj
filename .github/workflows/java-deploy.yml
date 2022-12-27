@@ -5,10 +5,9 @@ on:
             - DEV     
   workflow_dispatch:
 env:
-    server_group: PROD
+    server_group: QA
     war_filename: sample-project-0.0.1-SNAPSHOT.war
     repo_name: ${{ github.event.repository.name }}
-    webapps_dir: /srv/tomcat/webapps/
 jobs:
    Clone:
       runs-on: [self-hosted]
@@ -27,9 +26,9 @@ jobs:
        runs-on: [self-hosted]
        needs: Build_LocalCopy
        steps: 
-         - run: ansible-playbook -i /opt/ansible-playbook/inventory.txt  /opt/ansible-playbook/tomcat/copy-tomcat-artifact.yml  --extra-vars "server_group=${{ env.server_group }} war_name=${{ env.war_filename }} github_sha=$GITHUB_SHA repo_name=${{ env.repo_name }}"
+         - run: ansible-playbook -i /opt/ansible-playbook/inventory.txt  /opt/ansible-playbook/wildfly/copy-wildfly-artifact.yml --extra-vars "server_group=${{ env.server_group }} war_name=${{ env.war_filename }} github_sha=$GITHUB_SHA repo_name=${{ env.repo_name }}"
    Deploy:
        runs-on: [self-hosted]
        needs: Backup_ServerCopy
        steps:
-          - run: ansible-playbook -i /opt/ansible-playbook/inventory.txt  /opt/ansible-playbook/tomcat/tomcat-deploy.yml --extra-vars "server_group=${{ env.server_group }} war_name=${{ env.war_filename }} github_sha=$GITHUB_SHA deployment_dir=/opt/deployment/$(date +%Y)/$(date +%^b)/$(date +%e) webapps_dir=${{ env.webapps_dir }}"
+          - run: ansible-playbook -i /opt/ansible-playbook/inventory.txt  /opt/ansible-playbook/wildfly/wildfly-deploy.yaml --extra-vars "server_group=QA war_name=${{ env.war_filename }} github_sha=$GITHUB_SHA deployment_dir=/opt/deployment/$(date +%Y)/$(date +%^b)/$(date +%e)"
