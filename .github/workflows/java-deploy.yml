@@ -18,7 +18,7 @@ jobs:
        runs-on: [self-hosted]
        needs: Clone
        steps:
-       - run: echo "Github SHA for this deployment is: $GITHUB_SHA"
+       - run: echo $GITHUB_SHA
        - run: mvn clean install
        - run: mkdir -p /opt/artifacts/${{ env.repo_name }}/$GITHUB_SHA
        - run: ls -lht target/$war_filename 
